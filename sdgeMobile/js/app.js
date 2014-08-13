@@ -40,7 +40,7 @@
         skin: 'flat',
 
         // the application needs to know which view to load first
-        initial: 'views/home.html'
+        initial: 'partials/home.html'
       });
 
     }, false);
