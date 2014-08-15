@@ -8,15 +8,21 @@
  * Controller of the myTodoApp
  */
 angular.module('canvassApp')
-  .controller('LoginCtrl', function ($scope) {
-    $scope.todos = ['todo 1', 'todo2', 'todo3'];
-
-    $scope.addTodo = function() {
-    	$scope.todos.push($scope.todo);
-    	$scope.todo = '';
+  .controller('LoginCtrl', function ($scope, $rootScope, databaseServices, sugarCRMSynchronizer) {
+   	
+    $scope.user = {
+    username: '',
+    password: ''
     };
-
-    $scope.removeTodo = function(index) {
-    		$scope.todos.splice(index, 1);	
-    };
+       
+      
+	databaseServices.openDb(); 
+    
+    $scope.$watch('online', function(newStatus) {  
+         if(newStatus === true){
+              sugarCRMSynchronizer.syncUser();
+         }
+    });
+      
+       
   });

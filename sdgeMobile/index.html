@@ -7,6 +7,7 @@
         <link href="css/main.css" rel="stylesheet" />
         <link href="css/normalize.css" rel="stylesheet" />  
    	 <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet" /> 
+   	 <link href="lib/fontawesome/css/font-awesome.min.css" rel="stylesheet" /> 
         <script src="cordova.js"></script>
         <script src="lib/kendo/js/jquery.min.js"></script>
         <script src="lib/kendo/js/kendo.mobile.min.js"></script>  
@@ -17,9 +18,8 @@
             <![endif]-->
 
             <!-- Add your site or application content here -->
-            <div class="container"> 
-              <div ng-view=""></div> 
-            </div>
+           
+            <div ng-view></div>  
 
 <!--        <div data-role="layout" data-id="main">
             <div data-role="header">
@@ -51,7 +51,7 @@
             </ul>
         </div>  
         -->
-      
+        <!-- Libraries --> 
         <script src="lib/angular/angular.js"></script>  
         <script src="lib/angular/angular-resource.js"></script>
         <script src="lib/angular/angular-cookies.js"></script>
@@ -59,10 +59,19 @@
         <script src="lib/angular/angular-animate.js"></script>
         <script src="lib/angular/angular-touch.js"></script>
         <script src="lib/angular/angular-route.js"></script>
-    	<script src="lib/bootstrap/bootstrap.min.js"  type="text/javascript"></script> 
-          
-    	<script src="js/app.js"></script>
-    	<script src="js/controllers/LoginCtrl.js"></script>
+        <script src="lib/bootstrap/bootstrap.min.js"  type="text/javascript"></script>  
+        <script src="lib/crypto.js"  type="text/javascript"></script>
+        <script src="lib/persistenceJS/persistence.js"></script>
+        <script src="lib/persistenceJS/persistence.store.sql.js"></script>
+        <script src="lib/persistenceJS/persistence.store.cordovasql.js"></script>
+        <script src="lib/persistenceJS/persistence.store.websql.js"></script>
+        <!-- Controllers -->
+        <script src="js/app.js"></script>
+        <script src="js/persistenceModel.js"></script>
+        <script src="js/controllers/LoginCtrl.js"></script>
+        <script src="js/services/databaseServices.js"></script>
+        <script src="js/services/sugarCRMSynchronizer.js"></script>
+        <script src="js/services/sugarCRMDataProvider.js"></script>
       
     </body>
 </html>

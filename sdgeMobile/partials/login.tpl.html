@@ -1,0 +1,61 @@
+<!--<div class="content"> 
+  <div class="row"> 
+    <form role="form" ng-submit="addTodo()">
+      <div class="row">
+        <div class="input-group">
+          <input type="text" ng-model="todo" placeholder="What needs to be done?" class="form-control">
+          <span class="input-group-btn">
+            <input type="submit" class="btn btn-primary " value="Add">
+          </span>
+        </div>
+      </div>
+    </form>
+ 
+    <div ui-sortable ng-model="todos">
+      <p class="input-group" ng-repeat="todo in todos track by $index" style="padding:5px 10px; cursor: move;">
+        <input type="text" ng-model="todo" class="form-control">
+        <span class="input-group-btn">
+          <button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove">X</button>
+        </span>
+      </p>
+    </div>
+  </div>
+
+</div>-->
+
+
+<div class="container " >
+    <div data-role="header"></div>
+    <div class="row login">  
+            <div class="col-md-12 text-center"> 
+            	<h3 > RHA, Inc.   </h3>
+                <h4>Mobile Canvassing Tool</h4>
+            </div>     
+            <div class="col-md-12  push-3-percent"> 
+                 <form id="loginForm" name="loginForm"> 
+                     <div class="form-group">
+                         <div class="input-group">
+                             <span class="input-group-addon">
+                                 <i class="fa fa-user"></i>
+                             </span> 
+                             <input  class="form-control" type="text" name="username" ng-model="login.username" autocomplete=off required/>
+                         </div>
+        			 	<!--<span ng-show="loginForm.username.$error.required">Username is required.</span>-->
+                     </div>
+                     <div class="form-group">
+                         <div class="input-group">
+                             <span class="input-group-addon">
+                                 <i class="fa fa-lock"></i>
+                             </span>  
+                             <input  class="form-control"  type="password"  name="password"  ng-model="login.password" autocomplete=off required/>
+                         </div> 
+                      	<!--<span ng-show="loginForm.password.$error.required">Password is required.</span>-->
+                     </div> 
+                      <button data-role="button"  class="btn btn-lg btn-block blue" ng-disabled="loginForm.$invalid">Login</button>
+                     
+                 </form> 
+                <p>  If you have any questions or want to provide feedback please contact your Manager or Supervisor. </p>
+             </div>  
+    </div> 
+    <div data-role="footer"></div> 
+</div>
