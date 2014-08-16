@@ -2,9 +2,9 @@
 
 /* SugarCRM Synchronizer Services */
 
-canvassApp.factory('sugarCRMSynchronizer', ['sugarCRMDataProvider',
+canvassApp.factory('sugarCRMSynchronizer', ['sugarCRMDataProvider', 'loginServices',
 
-	 function(sugarCRMDataProvider) {  
+	 function(sugarCRMDataProvider, loginServices) {  
          
         var mapUser = function (sugarUser) {
             var user = new User();
@@ -18,8 +18,7 @@ canvassApp.factory('sugarCRMSynchronizer', ['sugarCRMDataProvider',
             return user;
         };
         
-        var syncUsers = function(sugarUsers, localUsers) {
-            console.log('asd');
+        var syncUsers = function(sugarUsers, localUsers) { 
                     
             for(var i = 0; i < sugarUsers.length; i++) {
 
@@ -120,7 +119,7 @@ canvassApp.factory('sugarCRMSynchronizer', ['sugarCRMDataProvider',
                 
                 syncUsers(data["users"], localUsers);
                 
-                if (app.Login.isUserAuthenticated()) {
+                if (loginServices.isUserAuthenticated()) {
                 	syncCanvasses(data["canvassing"]);
         			syncDispositions(data["dispositions"]);
                     syncMeetings(data["meetings"]);

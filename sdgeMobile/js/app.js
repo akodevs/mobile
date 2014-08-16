@@ -32,10 +32,14 @@ var canvassApp = angular
         templateUrl: 'partials/login.tpl.html',
         controller: 'LoginCtrl'
       })
+      .when('/settings', {
+        templateUrl: 'partials/settings.html', 
+      })
       .otherwise({
         redirectTo: '/'
       });
 });
+
 
 
 
