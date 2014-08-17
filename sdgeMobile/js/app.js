@@ -43,17 +43,24 @@ var canvassApp = angular
 
 
 
-//Check Status
+//App Run Settings
 canvassApp.run(function($window, $rootScope) {
-      $rootScope.online = false;
+      $rootScope.online = false;   
       $window.addEventListener("offline", function () {
         $rootScope.$apply(function() {
-          $rootScope.online = false;
+          $rootScope.online = false; 
         });
-      }, false);
+      }, true);
       $window.addEventListener("online", function () {
         $rootScope.$apply(function() {
-          $rootScope.online = true;
+          $rootScope.online = true;  
         });
-      }, false);
+      }, true);
+      $window.addEventListener("orientationchange", function () {
+          if (device.platform === 'iOS') {
+            setTimeout(function() {
+                $(document.body).height(window.innerHeight);
+            }, 10);
+         }
+      });
 });

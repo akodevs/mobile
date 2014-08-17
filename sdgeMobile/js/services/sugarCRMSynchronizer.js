@@ -118,7 +118,6 @@ canvassApp.factory('sugarCRMSynchronizer', ['sugarCRMDataProvider', 'loginServic
     		syncDbWithSugarCRM(userSugarId, function(data, localUsers) {
                 
                 syncUsers(data["users"], localUsers);
-                
                 if (loginServices.isUserAuthenticated()) {
                 	syncCanvasses(data["canvassing"]);
         			syncDispositions(data["dispositions"]);

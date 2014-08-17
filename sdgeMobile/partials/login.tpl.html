@@ -22,23 +22,28 @@
   </div>
 
 </div>-->
-
+ 
 
 <div class="container " >
     <div data-role="header"></div>
     <div class="row login">  
             <div class="col-md-12 text-center"> 
-            	<h3 > RHA, Inc.   </h3>
+            	<h3> RHA, Inc.   </h3>
                 <h4>Mobile Canvassing Tool</h4>
             </div>     
             <div class="col-md-12  push-3-percent"> 
+                <div class="alert alert-danger" ng-show="errors.length > 0">
+                    <div  data-ng-repeat="error in errors"> 
+                    	{{ error }}. 
+                    </div>
+                </div>
                  <form id="loginForm" name="loginForm" ng-submit="login()"> 
                      <div class="form-group">
                          <div class="input-group">
                              <span class="input-group-addon">
                                  <i class="fa fa-user"></i>
                              </span> 
-                             <input  class="form-control" type="text" name="username" ng-model="username" autocomplete=off required/>
+                             <input  class="form-control" type="text" name="username" ng-model="username"  ng-enter="login()" autocomplete=off />
                          </div>
         			 	<!--<span ng-show="loginForm.username.$error.required">Username is required.</span>-->
                      </div>
@@ -47,11 +52,11 @@
                              <span class="input-group-addon">
                                  <i class="fa fa-lock"></i>
                              </span>  
-                             <input  class="form-control"  type="password"  name="password"  ng-model="password" autocomplete=off required/>
+                             <input  class="form-control"  type="password"  name="password"  ng-model="password"  ng-enter="login()" autocomplete=off />
                          </div> 
                       	<!--<span ng-show="loginForm.password.$error.required">Password is required.</span>-->
                      </div> 
-                      <button type="submit"  class="btn btn-lg btn-block blue" ng-disabled="loginForm.$invalid">Login</button>
+                      <button type="submit"  class="btn btn-lg btn-block blue" >Login</button>
                      
                  </form> 
                 <p>  If you have any questions or want to provide feedback please contact your Manager or Supervisor. </p>

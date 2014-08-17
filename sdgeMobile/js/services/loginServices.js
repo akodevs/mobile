@@ -2,8 +2,8 @@
 
 /* Login Services */
 
-canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope',
- function(sugarCRMDataProvider, $rootScope){ 
+canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope', '$location', 
+ function(sugarCRMDataProvider, $rootScope, $scope, $location){ 
 
           var getUserIdentity = function() {
               
@@ -15,7 +15,7 @@ canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope',
           }
         
           var isUserAuthenticated = function() {
-              
+            
               var userIdentity = getUserIdentity();
               if (userIdentity !== null && userIdentity.userName.length > 0) 
                       return true;
@@ -39,8 +39,8 @@ canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope',
           };
         
           var loginUser = function (callback, username, password) {    
-			 
-              if (isUserAuthenticated()) console.log("Autenticated and will redirect to homepage")	
+			
+              if (isUserAuthenticated())  $location.path( "/settings" );	
               	//canvassApp.mobileApp.navigate('views/canvassingView.html');
 		      
               var userName = username;  
@@ -50,7 +50,7 @@ canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope',
               User.all().filter("username", '=', userName).list(function(users) {
 					
                   if (users.length === 0) { 
-                      //loginData.set("errorMessage","The user does not exist.");  
+                       $scope.errors.push('User does not exist'); 
                       return;
                   }
                   var user = users[0];
@@ -72,16 +72,15 @@ canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope',
                   } else if (typeof user.password !== 'undefined') {
 
                   	if (user.password !== hashedMaybePassword) { 
-                         //loginData.set("errorMessage", "The password is incorrect.") 
+                         $scope.errors.push('User Password is incorrect'); 
                  		return;
              		 } 
                       
                       setAuthCookie(user);
-                      callback();
-                      $("#errorContainer").addClass('display-none');
+                      callback(); 
 
-                  } else {
-                      //loginData.set("errorMessage", "The device must be online for the inital configuration.");  
+                  } else { 
+                        //loginData.set("errorMessage", "");   
                   }
                   
                   //kendo.mobile.application.hideLoading();
