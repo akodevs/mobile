@@ -22,13 +22,11 @@
   </div>
 
 </div>-->
- 
-
-<div class="container " >
-    <div data-role="header"></div>
-    <div class="row login">  
-            <div class="col-md-12 text-center"> 
-            	<h3> RHA, Inc.   </h3>
+  
+<div class="container text-center" > 
+    <div class="row login" >  
+            <div class="col-md-12 "> 
+            	<h3 class="title"> RHA, Inc.</h3>
                 <h4>Mobile Canvassing Tool</h4>
             </div>     
             <div class="col-md-12  push-3-percent"> 
@@ -43,7 +41,7 @@
                              <span class="input-group-addon">
                                  <i class="fa fa-user"></i>
                              </span> 
-                             <input  class="form-control" type="text" name="username" ng-model="username"  ng-enter="login()" autocomplete=off />
+                             <input  class="form-control" type="text" name="username" placeholder="Username" ng-model="username"  ng-enter="login()" autocomplete=off />
                          </div>
         			 	<!--<span ng-show="loginForm.username.$error.required">Username is required.</span>-->
                      </div>
@@ -52,7 +50,7 @@
                              <span class="input-group-addon">
                                  <i class="fa fa-lock"></i>
                              </span>  
-                             <input  class="form-control"  type="password"  name="password"  ng-model="password"  ng-enter="login()" autocomplete=off />
+                             <input  class="form-control"  type="password"  name="password" placeholder="Password" n  ng-model="password"  ng-enter="login()" autocomplete=off />
                          </div> 
                       	<!--<span ng-show="loginForm.password.$error.required">Password is required.</span>-->
                      </div> 

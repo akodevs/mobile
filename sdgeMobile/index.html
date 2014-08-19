@@ -2,57 +2,103 @@
 <html>
     <head>
         <title>SDGE ESA Mobile App</title>
-        <meta charset="utf-8" />
-        <link href="lib/kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
-        <link href="css/main.css" rel="stylesheet" />
-        <link href="css/normalize.css" rel="stylesheet" />  
-   	 <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet" /> 
-   	 <link href="lib/fontawesome/css/font-awesome.min.css" rel="stylesheet" /> 
+        <meta charset="utf-8" /> 
         <script src="cordova.js"></script>
         <script src="lib/kendo/js/jquery.min.js"></script>
-        <script src="lib/kendo/js/kendo.mobile.min.js"></script>  
+        <script src="lib/kendo/js/kendo.mobile.min.js"></script>      
+        <link href="styles/styleSheets.css" rel="stylesheet" />   
     </head>
   <body ng-app="canvassApp">
-            <!--[if lt IE 7]>
-              <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-            <![endif]-->
-
-            <!-- Add your site or application content here -->
-           
-            <div ng-view></div>  
-
-<!--        <div data-role="layout" data-id="main">
-            <div data-role="header">
-                <div data-role="navbar">
-                    <span data-role="view-title"></span>
-                    <a data-role="button" href="#appDrawer" data-rel="drawer" data-align="left" data-icon="drawer-button"></a>
-                </div>
-            </div>
- 
-        </div>-->
-  
-        <!-- application drawer and contents -->
-		<!--<div data-role="drawer" id="appDrawer" style="width: 270px" data-title="Navigation">
-            <div data-role="header">
-                <div data-role="navbar">
-                <span data-role="view-title"></span>
-                </div>
-            </div>
-            <ul data-role="listview">
-                <li>
-                	<a href="views/home.html">Home</a>
-                </li>
-                <li>
-                	<a href="views/settings.html">Settings</a>
-                </li>
-                <li>
-                	<a href="views/contacts.html">Contacts</a>
-                </li>
-            </ul>
-        </div>  
-        -->
-        <!-- Libraries --> 
+        <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+      
+        <script type="text/ng-template" id="headerTemplate"> 
+            <div class="header" ng-controller="MainCtrl"> 
+                    <div class="left-section"  ng-class="{ animateOn: hover}"    ng-mouseenter="hover = true" ng-mouseleave="hover = false"> 
+                		<a  id="drawer-trigger"  ng-click="drawer.show()">
+                            <i class="navicon fa fa-navicon"></i> 
+                            <span class="navbar-info"> 
+                                Welcome, {{ userName }}  
+                                <span class="status-section"> 
+                                	<span><i class="fa fa-rss"></i> {{ connectionStatus }}</span>  |
+                                    <i class="fa fa-retweet"></i> {{ lastSync }}
+                                </span>
+                            </span>  
+                        </a> 
+                    </div> 
+                
+                <div id="drawer" kendo-mobile-drawer="drawer" k-container="'#content-container'"> 
+                        <ul   data-role="listview" kendo-mobile-list-view data-type="group"> 
+                            <li> 
+                                <ul> 
+                                   <!-- <li class="group-title"> 
+                                        Main Menu
+                                        Online | <span class="last-sync">Last synced 22 seconds ago</span>
+                                    </li>-->
+                                    <li >
+                                        <a href="views/dashboardView.html"> 
+                                            <span class="drawer-icon">
+                                                <i class="fa fa-bar-chart-o"></i>
+                                            </span> 
+                                            <span class="drawer-icon-description"> 
+                                           	 Dashboard
+                                            </span> 
+                                        </a> 
+                                    </li>
+                                    <li data-link="">
+                                        <a href="views/canvassingView.html" > 
+                                            <span class="drawer-icon">
+                                                <i class="fa fa-paste"></i>
+                                            </span> 
+                                            <span class="drawer-icon-description"> 
+                                           	 Canvassing
+                                            </span> 
+                                        </a> 
+                                    </li>
+                                    <li>
+                                        <a  href="views/calendarView.html" > 
+                                            <span class="drawer-icon">
+                                               <i class="fa fa-calendar"></i>
+                                            </span> 
+                                            <span class="drawer-icon-description"> 
+                                           	 Meetings
+                                            </span> 
+                                        </a>
+                                    </li>
+                                    <li >
+                                        <a  href="views/settingsView.html" > 
+                                            <span class="drawer-icon">
+                                               <i class="fa fa-cogs"></i>
+                                            </span> 
+                                            <span class="drawer-icon-description"> 
+                                           	 Settings
+                                            </span>
+                                        </a> 
+                                    </li>
+                                    <li> 
+                                        <a  href="#" > 
+                                            <span class="drawer-icon">
+                                               <i class="fa fa-power-off"></i>
+                                            </span> 
+                                            <span class="drawer-icon-description"> 
+                                           	 Log Out
+                                            </span>
+                                        </a>  
+                                    </li>
+                                </ul>
+                            </li> 
+                        </ul> 
+                </div> 
+            </div> 
+        </script>
+                   
+      
+        <div ng-view></div>   
+         
         <script src="lib/angular/angular.js"></script>  
+        <script src="lib/kendo/angular-kendo.js"></script>  
+        <script src="lib/kendo/js/kendo.all.js"></script>  
         <script src="lib/angular/angular-resource.js"></script>
         <script src="lib/angular/angular-cookies.js"></script>
         <script src="lib/angular/angular-sanitize.js"></script>
@@ -68,11 +114,14 @@
         <!-- Controllers -->
         <script src="js/app.js"></script>
         <script src="js/persistenceModel.js"></script>
-        <script src="js/controllers/LoginCtrl.js"></script>
         <script src="js/services/databaseServices.js"></script>
         <script src="js/services/sugarCRMSynchronizer.js"></script>
         <script src="js/services/sugarCRMDataProvider.js"></script>
         <script src="js/services/loginServices.js"></script>
+      
+        <script src="js/controllers/MainCtrl.js"></script>
+        <script src="js/controllers/LoginCtrl.js"></script>
+        <script src="js/controllers/ListCtrl.js"></script>
       
     </body>
 </html>

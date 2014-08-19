@@ -25,6 +25,7 @@ var canvassApp = angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',   
+    'kendo.directives'
 ])
 .config(function ($routeProvider) {
     $routeProvider
@@ -32,8 +33,9 @@ var canvassApp = angular
         templateUrl: 'partials/login.tpl.html',
         controller: 'LoginCtrl'
       })
-      .when('/settings', {
-        templateUrl: 'partials/settings.html', 
+      .when('/list', {
+        templateUrl: 'partials/list.tpl.html', 
+        controller: 'ListCtrl'
       })
       .otherwise({
         redirectTo: '/'

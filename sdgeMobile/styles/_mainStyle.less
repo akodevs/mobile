@@ -1,0 +1,269 @@
+
+
+html,body { height: 100%; margin: 0px; padding: 0px; }
+ 
+
+body {
+    border: 0 none; 
+    font-family: @main-font;
+	background-color: @white; 
+	font-size: @font-sm;
+	color: @gray_less;
+	line-height: 22px;
+	min-height: 100%;
+	position: relative;
+	-webkit-text-size-adjust: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    
+    font-family:  @main-font; 
+    font-weight: @font-wt-md; 
+}
+
+h3 {
+    color: @blue_less;
+    font-size: @font-lg;
+}
+  
+ 
+h4 { 
+    color: @blue;
+	font-size: @font-md;
+}
+
+
+/* login */
+
+
+.login { 
+    margin-top: @size-xl  ;
+
+     .input-group-addon {
+        padding: 5px;
+        background: @blue_rich;
+        min-width:48px;
+        text-align:center;
+        font-size: @font-sm;
+        color: @white;
+        
+    } 
+
+    .form-control {
+        height:48px;
+        font-size: @font-sm;
+        box-shadow:none;
+    }
+
+	p { 
+        text-align:center;
+        font-size:@font-sm;
+        padding: @size-md;
+	}
+
+
+    #login-form {
+        border-bottom: #ccc thin solid;
+        padding: 20px 0px;
+    }
+
+}
+
+/* Container */
+
+.main-container {  
+    position:fixed !important;
+    position:absolute;
+    top:45px;
+    right:0;
+    bottom:0;
+    left:0; 
+} 
+   
+#content-container {
+    height: 100%;  
+    width: 100%;  
+    margin-top: -22px;
+    background-color: #fff;
+	margin-left: 10px;  
+}
+ 
+
+
+/* header */
+
+.box {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	
+	.header { 
+		height: 45px;
+		background: @blue_rich; 
+		a { 
+			position: relative;
+			display: block; 
+			cursor: pointer;
+
+            &:hover, 
+            &:focus, 
+            &:active
+			{
+				width: 100%; 
+				height: 45px; 
+                background-color: @blue_less !important;
+                color: @white !important;
+                outline: none !important;
+            }	
+ 
+		}
+
+
+		.animateOn {  
+            position: relative;
+			left: 10px !important;
+		}
+
+
+		#drawer-trigger {
+		
+			width: 300px;
+    		padding: 3px;  
+			left: -10px;
+
+            i.navicon {
+                color: @white;
+                font-size: @font-xl;  
+                display:inline-block; 
+                padding-right: 8px; 
+                position: relative;
+                top:-7px;
+            }
+
+
+            	
+            .navbar-info { 
+
+                font-size: 1.3em;
+                color: @white;
+                line-height:100%;
+                display:inline-block; 
+
+
+                .status-section {
+                        font-size: @font-xs;
+                        color: @white_less;  
+                        display:block; 
+                } 
+
+            }
+
+		}
+
+
+	}
+
+	
+}
+
+
+/* Kendo Reset Drawer */
+ 
+
+ .km-flat, .km-flat .km-navbar, .km-flat .km-content 
+{
+    background-color: @gray; 
+}
+  
+ 
+#drawer {
+
+    width: 200px;   
+    height: 100%;   
+    top:45px;
+    background-color: @blue_richer;  
+	z-index: 10000; 
+ 
+ 
+	.km-scroll-container{
+        width: 100%;   
+        height: 100%;   
+   	 background-color: @blue_richer; 
+	}
+
+	ul.km-list li {
+		position: relative;
+		display: block;
+		position: relative;
+		width: 100%;
+		left: -15px; 
+		top: -5px;
+		padding: 3px;
+		cursor: pointer;
+		
+		a { 
+			font-size: @font-md - 0.2rem; 
+			color: @white;
+
+            &:hover, 
+            &:focus, 
+            &:active
+			{ 
+				height: auto; 
+                background-color: @blue_richer !important;
+                color: @blue !important; 
+            }	
+ 
+		}
+	}
+    ul.km-list li a span.drawer-icon {  
+        font-size: @font-md; 
+		margin-right: 5px; 
+    } 
+
+    .km-list>li, .km-root .km-listview-link, .km-root .km-listview-label {
+        margin: 0;
+        display: block;
+        position: relative;
+        list-style-type: none;
+        vertical-align: left; 
+        padding: 0;
+	}
+} 
+  
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+ 

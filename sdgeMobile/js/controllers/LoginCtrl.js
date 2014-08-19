@@ -6,8 +6,7 @@ angular.module('canvassApp')
         $scope.errors = [];
         $scope.username = "";
         $scope.password = "";
-          
-
+            
         //DB Init  
         databaseServices.openDb();  
           
@@ -18,7 +17,7 @@ angular.module('canvassApp')
                   sugarCRMSynchronizer.syncUser();
              }
             else if(loginServices.isUserAuthenticated() === true) { 
-                           $location.path( "/settings" );
+                           $location.path( "/list" );
             } 
             else {
                 $scope.errors.push('The device must be online for the inital configuration.');
@@ -46,9 +45,9 @@ angular.module('canvassApp')
                   
 
            loginServices.loginUser(function() { 
-                      if (loginServices.isUserAuthenticated() && loginServices.isAppOnline()) {
-                        var userIdentity = loginServices.getUserIdentity();
-                    	sugarCRMSynchronizer.syncDb(userIdentity.sugarId, function(){
+                      if (loginServices.isUserAuthenticated() && loginServices.isAppOnline()) { 
+                        $scope.userIdentity = loginServices.getUserIdentity();
+                    	sugarCRMSynchronizer.syncDb($scope.userIdentity.sugarId, function(){
                       	 //canvassApp.mobileApp.navigate('views/canvassingView.html');
                                //$location.path("/settings");
                                         

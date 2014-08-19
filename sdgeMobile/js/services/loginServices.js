@@ -40,7 +40,7 @@ canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope', '$lo
         
           var loginUser = function (callback, username, password) {    
 			
-              if (isUserAuthenticated())  $location.path( "/settings" );	
+              if (isUserAuthenticated())  $location.path( "/list" );	
               	//canvassApp.mobileApp.navigate('views/canvassingView.html');
 		      
               var userName = username;  
