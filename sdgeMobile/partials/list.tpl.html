@@ -1,25 +1,32 @@
 
-
-<div class="box">   
-
-
-  <div ng-include="'headerTemplate'">  </div> 
-
-   <div class="main-container"> 
-        
-              
-          <div id="content-container"> 
-            <div id="baseball" class="inner-content">
-              <h3>Baseball</h3>
-              <p> 
-                Baseball is a bat-and-ball sport played between two teams of nine players each. The aim is to score runs by hitting a thrown ball with a bat and touching a series of four bases arranged at the corners of a ninety-foot diamond. Players on the batting team take turns hitting against the pitcher of the fielding team, which tries to stop them from scoring runs by getting hitters out in any of several ways. A player on the batting team can stop at any of the bases and later advance via a teammate's hit or other means. The teams switch between batting and fielding whenever the fielding team records three outs. One turn at bat for each team constitutes an inning and nine innings make up a professional game. The team with the most runs at the end of the game wins.
-              </p>
-            </div> 
+<div> 
+    <div class="row"> 
+        <div class="  navi-breadcrumb"> 
+            <div class="left" >
+                <a   class="disabled"><i class="fa fa-chevron-circle-left"></i></a>   
+            </div>
+            <div class="middle"> 
+                <ol class="breadcrumb"> 
+                  <li><a >Canvasses</a></li>  
+                </ol>
+            </div>
+            <div class="right">  
+                <a   class="disabled" ><i class="fa fa-chevron-circle-right"></i></a>
+            </div>
         </div>
-   </div> 
-     
-        
+    </div>
+    
+         
+    <div kendo-mobile-scroller class="pack" id="canvass_data">
+      <ul kendo-mobile-list-view k-data-source="todo"></ul>
+    </div> 
+
+    <script id="mobileListViewTemplate" type="text/x-kendo-template">
+        # if (data.id) { # 
+            <a href='views/canvassGrid.html?sugar_canvass_id=#:data.sugar_canvass_id#&canvassName=#:data.canvassing_list_name#' > 
+                  #: data.canvassing_list_name #    <span class="fl-right" ><i class="fa fa-angle-right"></i></span>
+            </a> 
+        # } # 
+    </script>   
     
 </div>
-
-       

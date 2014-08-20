@@ -915,22 +915,6 @@ h4 {
   border-bottom: #ccc thin solid;
   padding: 20px 0px;
 }
-/* Container */
-.main-container {
-  position: fixed !important;
-  position: absolute;
-  top: 45px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-#content-container {
-  height: 100%;
-  width: 100%;
-  margin-top: -22px;
-  background-color: #fff;
-  margin-left: 10px;
-}
 /* header */
 .box {
   padding: 0;
@@ -1035,4 +1019,53 @@ h4 {
   list-style-type: none;
   vertical-align: left;
   padding: 0;
+}
+/* Container */
+.main-container {
+  position: fixed !important;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#content-container {
+  height: 100%;
+  width: 100%;
+  margin-top: 0px;
+  background-color: #fff;
+  margin-left: 10px;
+}
+/* breadcrumb */
+.navi-breadcrumb {
+  text-align: center;
+  height: 20px;
+  margin-bottom: 20px;
+}
+.navi-breadcrumb i {
+  font-size: 23px;
+  margin-top: 2px;
+}
+.navi-breadcrumb .left {
+  width: 10%;
+  padding: 6px 0px;
+  background-color: #f5f5f5;
+  float: left;
+}
+.navi-breadcrumb .middle {
+  width: 80%;
+  float: left;
+}
+.navi-breadcrumb .right {
+  width: 10%;
+  padding: 6px 0px;
+  background-color: #f5f5f5;
+  float: left;
+}
+.navi-breadcrumb .disabled {
+  color: #eaeaea !important;
+}
+.navi-breadcrumb .breadcrumb {
+  position: relative;
+  top: -16px;
 }

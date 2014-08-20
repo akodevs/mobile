@@ -14,10 +14,10 @@ angular.module('canvassApp')
         $scope.$watch('online', function(connectionStatus) {  
             $scope.errors = [];
             if(connectionStatus === true && loginServices.isUserAuthenticated() === false){ 
-                  sugarCRMSynchronizer.syncUser();
+                  sugarCRMSynchronizer.syncUser();   
              }
             else if(loginServices.isUserAuthenticated() === true) { 
-                           $location.path( "/list" );
+                  $location.path( "/list" ); 
             } 
             else {
                 $scope.errors.push('The device must be online for the inital configuration.');

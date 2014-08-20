@@ -37,6 +37,10 @@ var canvassApp = angular
         templateUrl: 'partials/list.tpl.html', 
         controller: 'ListCtrl'
       })
+      .when('/settings', {
+        templateUrl: 'partials/settings.tpl.html', 
+        controller: 'ListCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

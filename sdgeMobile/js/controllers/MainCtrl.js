@@ -6,15 +6,14 @@ angular.module('canvassApp')
  $scope.userName = "";
  $scope.lastSync="";
  $scope.connectionStatus = ""; 
+ $rootScope.showNav = false;
    
-      
-  
+       
     //Check Status
     $scope.$watch('online', function(connectionStatus) {  
-             
+             console.log(loginServices.isUserAuthenticated() + '' + connectionStatus);
         if(loginServices.isUserAuthenticated()){
-             $scope.userIdentity = loginServices.getUserIdentity();
-             $scope.showNav = true; 
+             $scope.userIdentity = loginServices.getUserIdentity(); 
              $scope.userName =  $scope.userIdentity.name;
              $scope.lastSync = "5 seconds ago"; 
         	 $scope.connectionStatus = (loginServices.isAppOnline() === true ?  "Online" : "Offline");
