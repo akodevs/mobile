@@ -57,6 +57,10 @@ var canvassApp = angular
         templateUrl: 'partials/disposition.tpl.html', 
         controller: 'DispositionCtrl'
       })
+      .when('/dashboard', {
+        templateUrl: 'partials/dashboard.tpl.html', 
+        controller: 'DashboardCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

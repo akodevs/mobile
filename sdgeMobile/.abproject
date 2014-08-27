@@ -63,7 +63,6 @@
     "android.permission.WRITE_EXTERNAL_STORAGE"
   ],
   "DeviceOrientations": [
-    "Portrait",
     "Landscape"
   ],
   "AndroidHardwareAcceleration": "false",

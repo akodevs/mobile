@@ -1,9 +1,61 @@
-<!DOCTYPE html>
 
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-    </body>
-</html>
+<div> 
+    <div class="row"> 
+        <div class="  navi-breadcrumb"> 
+            <div class="left" >
+                <a   class="disabled"><i class="fa fa-chevron-circle-left"></i></a>   
+            </div>
+            <div class="middle"> 
+                <ol class="breadcrumb"> 
+                  <li><a >Dashboard</a></li>  
+                </ol>
+            </div>
+            <div class="right">  
+                <a   class="disabled" ><i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+    
+        <div class="container" kendo-mobile-scroller style="height: 450px;  "> 
+              <div class="col-md-6 text-center" >
+                   
+                  	   <h4  style="margin: 0px;">Total by Disposition</h4>
+             			<div kendo-chart 
+                             style="width:100%; height:400px"
+                             k-series-defaults="{ type: 'pie'  } " 
+                             k-series="[{
+                                            field: 'total',
+                                            categoryField: 'disposition', 
+                                          }]"
+                             k-data-source="data_Disposition"
+                             k-theme="'metro'"  
+                             k-legend="{ labels: { template:' #=text#: #=value#', font: '1.3em arial '  }, position: 'bottom' }">
+                        </div>  
+                  
+              </div>
+              <div class="col-md-6 text-center" > 
+           
+                  	   <h4  style="margin: 0px;">Conversion</h4> 
+             			<div  kendo-chart   
+                             style="width:100%; height:400px"
+                             k-series-defaults="{ type: 'donut'  } " 
+                             k-series="[{
+                                            field: 'total',
+                                            categoryField: 'disposition', 
+                                          }]"
+                             k-data-source="data_Conversion" 
+                             k-theme="'metro'"  
+                             k-legend="{ labels: { template:' #=text#: #=value#', font: '1.3em arial '  }, position: 'bottom' }" 
+                            >
+                        </div>
+              </div>
+                        
+            
+            
+         </div> 
+    
+     </div> 
+ 
+</div>
