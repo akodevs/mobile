@@ -1,0 +1,87 @@
+<div class="row"> 
+    <div class="  navi-breadcrumb"> 
+        <div class="left" >
+            <a  ng-click="goBack()"><i class="fa fa-chevron-circle-left"></i></a>   
+        </div>
+        <div class="middle"> 
+            <ol class="breadcrumb">  
+              <li><a href="#/list">Canvasses List</a></li>  
+              <li><a ng-click="goBack()"> Grid </a></li> 
+              <li><a > Disposition </a></li> 
+            </ol>
+        </div>
+        <div class="right">  
+            <a   class="disabled" ><i class="fa fa-chevron-circle-right"></i></a>
+        </div>
+    </div>
+</div>  
+
+
+<div class="padding-md pack">
+        <div  > 
+            <table class="table table-bordered">
+                <tr>
+                    <td><b>Canvass</b></td>
+                    <td><b>Disposition</b></td>
+                    <td><b>Action</b></td>
+                </tr>
+                <tr>
+                    <td> 
+           				 {{name}} 
+                    </td>
+                    <td> 
+           				 {{disposition}} 
+                    </td>
+                    <td  width="20%">
+                        <a class="btn btn-md   btn-block blue "  kendo-button ng-click="modal.open()" >
+                            Update Disposition
+                        </a>
+                         
+                    </td>
+                </tr>
+            </table>
+        </div>  
+    
+             
+        <div  id="modalview-logins" kendo-mobile-modal-view="modal" style="width: 90%; height:350px">     
+            <div data-role="header">
+                <div data-role="navbar" data-align="right" > 
+         		     <small>Select Disposition </small>
+                </div> 
+            </div>
+             <div class="modal-body">	 
+				<div kendo-grid   k-options="gridOptions(dispositionList)" k-rebind="gridOptions(dispositionList)"    k-on-change="handleChange(selected, data)"  ></div>
+                 
+                 
+              <!--  <ul  data-style="inset" >
+                	<li ng-repeat="disposition in dispositionList" >
+                			<div class="view"> 
+                                <input type="radio"   ng-model="$parent.dispositionInput"  name="dispositionInput" ng-value="disposition.name"  >{{disposition.name}} ({{disposition.code}} ) 
+                        	</div> 
+                	</li>
+                </ul> -->
+            </div>         
+            <div data-role="footer"  class="ml-footer">
+                <div data-role="navbar"> 
+         		   <a  ng-click="modal.close()"  data-align="right" class="btn btn-md default">  Cancel</a>  &nbsp;<a ng-click="modal.close(); update()"  data-align="right" class="btn btn-md green margin-left-5">  Update</a> 
+                </div> 
+            </div>
+            
+           <!-- <script id="selectDispositionTemplate" type="text/x-kendo-template"> 
+                # 
+                var canvassing_list_name = app.CanvassDisposition.canvass.canvassName;
+                var sugar_canvass_id = app.CanvassDisposition.canvass.sugar_canvass_id; 
+                var canvassId = app.CanvassDisposition.canvass.id; 
+                var currentDisposition = app.CanvassDisposition.canvass.disposition;
+                if (data.id && (currentDisposition !== name)) { # 
+                    <a href='views/updateDispositionView.html?id=#:canvassId#&sugar_canvass_id=#:sugar_canvass_id#&canvassName=#:canvassing_list_name#&disposition=#:name#'  >#:code# (#:name#)  <span class="fl-right" ><i class="fa fa-angle-right"></i></span></a>
+                # } else {#
+                       <a   disabled >#:code# (#:name#)  <span class="fl-right" ><i class="fa fa-angle-right"></i></span></a> 
+                    
+                # } #
+            </script>-->
+              
+                
+        </div> 
+                
+    </div>  

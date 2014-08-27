@@ -1069,3 +1069,14 @@ h4 {
   position: relative;
   top: -16px;
 }
+.modal-body {
+  background: #ffffff;
+  border-bottom: #d6d6d6 1px solid;
+  height: 100% !important;
+}
+.ml-footer {
+  border-top: #41f6f2 1px solid;
+}
+.margin-left-5 {
+  margin-left: 5px !important;
+}

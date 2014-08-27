@@ -1,18 +1,26 @@
 'use strict';
 
 angular.module('canvassApp')
-  .controller('GridCtrl', ['$scope', '$rootScope', 'loginServices', 'canvassServices', '$routeParams', 
-		function ($scope, $rootScope, loginServices, canvassServices, $routeParams) { 
+  .controller('GridCtrl', ['$scope',  'canvassServices', '$routeParams', 
+		function ($scope,   canvassServices, $routeParams) { 
        
             
         var canvassList = $scope.canvassList = []; 
-             
+            
+            
+        //var list = new kendo.data.DataSource({   data: [ ]   });
+            
+          
          
         canvassServices.fetchGrid($scope, $routeParams.name, function(){ 
-                canvassList = $scope.canvassList;    
+                canvassList = $scope.canvassList;
+               /* list.fetch(function(){
+                  list.data(canvassList);
+                  $scope.data = list.data();
+                });*/
                 $scope.refresh(); 
         }); 
-             
+              
         
         $scope.gridOptions = function(canvassList) {
               

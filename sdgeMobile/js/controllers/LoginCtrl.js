@@ -15,7 +15,7 @@ angular.module('canvassApp')
                   sugarCRMSynchronizer.syncUser();   
              }
             else if(loginServices.isUserAuthenticated() === true) { 
-                  $location.path( "/list" ); 
+                  $location.path( "/list" ).replace(); 
             } 
             else {
                 $scope.errors.push('The device must be online for the inital configuration.');

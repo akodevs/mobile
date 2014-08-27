@@ -38,7 +38,17 @@ angular.module('canvassApp')
   
 $scope.show = function(event, page) {
     $scope.drawer.hide(); 
-    $location.path('/'+ page).replace();
+    if(page === 'logout'){
+        loginServices.logout(); 
+        $scope.userName = "";
+        $scope.lastSync="";
+        $scope.connectionStatus = ""; 
+        $scope.showNav = false;
+    	$location.path('/').replace();
+    }
+    else { 
+    	$location.path('/'+ page).replace();
+    }
   };
 
 });

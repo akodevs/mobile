@@ -87,6 +87,10 @@ canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope', '$lo
               });
               
           };
+     
+          var logout = function () {
+          	window.localStorage.setItem("userIdentity", null); 
+          };
           
          
         
@@ -94,7 +98,8 @@ canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope', '$lo
             loginUser: loginUser,
             isUserAuthenticated: isUserAuthenticated,
             getUserIdentity: getUserIdentity,  
-            isAppOnline: isAppOnline
+            isAppOnline: isAppOnline,
+            logout: logout
          };
         
 }]);

@@ -32,6 +32,7 @@ canvassApp.factory( 'canvassServices', ['loginServices', function(loginServices)
                            
                        });   
         		},
+           
                fetchGrid: function(scope, canvassListName, callback) { 
                          Canvass.all().filter("canvassing_list_name", '=', canvassListName).order('primary_address_postalcode', false).order('primary_address_city', false).order('primary_address_street', false).selectJSON(['*'], function(items) { 
                                            scope.canvassList = items; 
@@ -39,6 +40,46 @@ canvassApp.factory( 'canvassServices', ['loginServices', function(loginServices)
                         });  
                        
                },
+           
+           	fetchDisposition: function(scope, callback){
+           		LookupDisposition.all().selectJSON(['*'], function(items) {
+                         scope.dispositionList = items; 
+                         callback(); 
+                    });          
+               },
+           
+           	convertCanvass: function(id, callback) {
+                   
+                       Canvass.load(id, function(item){ 
+                            item.disposition = 'Converted';  
+                            persistence.flush(function(){ });  
+                       });  
+           
+                   callback();
+               },
+               
+           	getLinkingCode: function(scope, id, callback){
+                          Canvass.all().filter('id', '=', id).selectJSON(['*'], function(items){   
+                              scope.canvass = items; 
+                              callback();
+                         }); 
+               },
+           
+           	updateDisposition: function(disposition, id, callback) { 
+                             LookupDisposition.all().filter('name', '=', disposition).selectJSON(['*'], function(items) {  
+                                Canvass.load(id, function(canvassItem){ 
+                                        //set the value
+                                         canvassItem.disposition =  items[0].name;  
+                                         persistence.flush(function(){  
+                         					 callback();
+                                         });   
+                                        
+                                 });
+                            });  
+               }
+           
+           	
+           
            
            
        }

@@ -44,6 +44,18 @@ var canvassApp = angular
       .when('/grid/:id/:name', {
         templateUrl: 'partials/grid.tpl.html', 
         controller: 'GridCtrl'
+      }) 
+      .when('/convert/:id/:sugarId/:name', {
+        templateUrl: 'partials/convert.tpl.html', 
+        controller: 'ConvertCtrl'
+      })
+      .when('/linkingCode/:id/:name', {
+        templateUrl: 'partials/linkingCode.tpl.html', 
+        controller: 'LinkingCodeCtrl'
+      })
+      .when('/disposition/:id/:sugarId/:name/:disposition', {
+        templateUrl: 'partials/disposition.tpl.html', 
+        controller: 'DispositionCtrl'
       })
       .otherwise({
         redirectTo: '/'
