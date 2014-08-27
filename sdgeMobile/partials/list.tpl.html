@@ -15,18 +15,15 @@
             </div>
         </div>
     </div>
-    
-         
-    <div kendo-mobile-scroller class="pack" id="canvass_data">
-      <ul kendo-mobile-list-view k-data-source="todo"></ul>
-    </div> 
 
-    <script id="mobileListViewTemplate" type="text/x-kendo-template">
-        # if (data.id) { # 
-            <a href='views/canvassGrid.html?sugar_canvass_id=#:data.sugar_canvass_id#&canvassName=#:data.canvassing_list_name#' > 
-                  #: data.canvassing_list_name #    <span class="fl-right" ><i class="fa fa-angle-right"></i></span>
-            </a> 
-        # } # 
-    </script>   
     
+    <ul>
+    	<li ng-repeat="canvass in canvassList" >
+    			<div class="view"> 
+    	                <a href="#/grid/{{canvass.sugar_canvass_id}}/{{canvass.canvassing_list_name}}">{{canvass.canvassing_list_name}}</a> 
+            	</div> 
+    	</li>
+    </ul>
+     
+ 
 </div>

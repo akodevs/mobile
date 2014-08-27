@@ -1,18 +1,19 @@
 'use strict';
 
 angular.module('canvassApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $location, loginServices) {
+  .controller('MainCtrl', function ($scope, $rootScope, $location, loginServices, databaseServices) {
       
  $scope.userName = "";
  $scope.lastSync="";
  $scope.connectionStatus = ""; 
- $rootScope.showNav = false;
+ $scope.showNav = false;
    
        
     //Check Status
     $scope.$watch('online', function(connectionStatus) {  
-             console.log(loginServices.isUserAuthenticated() + '' + connectionStatus);
+            
         if(loginServices.isUserAuthenticated()){
+ 			$scope.showNav = true;
              $scope.userIdentity = loginServices.getUserIdentity(); 
              $scope.userName =  $scope.userIdentity.name;
              $scope.lastSync = "5 seconds ago"; 
@@ -20,9 +21,24 @@ angular.module('canvassApp')
         } 
 
     });
+      
+    $scope.$on('$routeChangeStart', function(next, current) {     
+        //DB Init  
+        databaseServices.openDb();     
+        if(loginServices.isUserAuthenticated()){
+            	
+             $scope.userIdentity = loginServices.getUserIdentity(); 
+             $scope.userName =  $scope.userIdentity.name;
+             $scope.lastSync = "5 seconds ago"; 
+             $scope.connectionStatus = (loginServices.isAppOnline() === true ?  "Online" : "Offline");
+             $scope.showNav = (loginServices.isAppOnline() === true ?  true : false);
+        }  
+    });
+       
   
-$scope.show = function(event, section) {
+$scope.show = function(event, page) {
     $scope.drawer.hide(); 
+    $location.path('/'+ page).replace();
   };
 
 });

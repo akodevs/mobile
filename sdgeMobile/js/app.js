@@ -41,6 +41,10 @@ var canvassApp = angular
         templateUrl: 'partials/settings.tpl.html', 
         controller: 'ListCtrl'
       })
+      .when('/grid/:id/:name', {
+        templateUrl: 'partials/grid.tpl.html', 
+        controller: 'GridCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

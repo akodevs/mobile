@@ -7,8 +7,6 @@ angular.module('canvassApp')
         $scope.username = "";
         $scope.password = "";
             
-        //DB Init  
-        databaseServices.openDb();  
           
         //Check Status
         $scope.$watch('online', function(connectionStatus) {  
@@ -29,7 +27,7 @@ angular.module('canvassApp')
 
         $scope.login = function () {
 
-            $scope.errors = [];
+            $scope.errors = [];    
                 
             if($scope.username === '') {
                 $scope.errors.push('Please enter your username');
@@ -51,7 +49,7 @@ angular.module('canvassApp')
                       	 //canvassApp.mobileApp.navigate('views/canvassingView.html');
                                //$location.path("/settings");
                                         
-                              $location.path('/settings').replace();
+                              $location.path('/list').replace();
                               $scope.$apply();
                         });   
                       } 

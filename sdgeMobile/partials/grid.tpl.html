@@ -1,0 +1,47 @@
+
+
+
+<div> 
+    <div class="row"> 
+        <div class="  navi-breadcrumb"> 
+            <div class="left" >
+                <a  href="#/list"><i class="fa fa-chevron-circle-left"></i></a>   
+            </div>
+            <div class="middle"> 
+                <ol class="breadcrumb"> 
+                  <li><a >Canvasses</a></li>  
+                  <li><a > List</a></li> 
+                </ol>
+            </div>
+            <div class="right">  
+                <a   class="disabled" ><i class="fa fa-chevron-circle-right"></i></a>
+            </div>
+        </div>
+    </div>  
+    
+  
+    <div kendo-grid k-options="gridOptions(canvassList)" k-rebind="gridOptions(canvassList)"  style="width: 98%"></div> 
+     
+    <script type="text/x-kendo-template" id="dispositionTemplate"> 
+       <div>
+          <span #=(disposition==="Converted" || disposition==="Enrolled")?' class="text-red  "':''#>
+        			#if(disposition === ''){# No Disposition Set #}
+        			 else {# #:disposition# #}#
+        	</span> 
+    		# if(disposition==="Converted"){ #
+        		 <br/>
+				 <small >  <span >Linking Code:</span><br/> <b >#:linking_code# </b>   </small> 
+    		# } #
+        </div>
+      
+    </script>  
+
+    <script type="text/x-kendo-template" id="optionsTemplate">
+        
+            <a #=(disposition==="Converted" || disposition==="Enrolled")?'disabled=true  class="btn default space-button-grid btn-block"':' class="btn blue space-button-grid btn-block"'#  data-role="button" href='views/convertCanvassView.html?id=#:id#&sugar_canvass_id=#:sugar_canvass_id#&canvassName=#:canvassing_list_name#'  >
+    			<i class="fa fa-check"></i> <small>Convert</small></a>
+            <a #=(disposition==="Converted" || disposition==="Enrolled")?'disabled=true  class="btn default space-button-grid  btn-block"':'  class="btn blue space-button-grid btn-block"'# class="btn dark space-button-grid" data-role="button"  href='views/updateDispositionView.html?id=#:id#&sugar_canvass_id=#:sugar_canvass_id#&canvassName=#:canvassing_list_name#&disposition=#:disposition#' ><i class="fa fa-unsorted"></i> <small>Disposition</small></a>
+  
+    </script>
+    
+</div>

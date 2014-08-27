@@ -230,7 +230,12 @@
                 // Angular will invoke $render when the view needs to be updated with the view value.
                 ngModel.$render = function() {
                   // Update the widget with the view value.
-                  widget.value(ngModel.$viewValue);
+
+                  // delaying with setTimout for cases where the datasource is set thereafter.
+                  // https://github.com/kendo-labs/angular-kendo/issues/304
+                  setTimeout(function(){
+                    widget.value(ngModel.$viewValue);
+                  }, 0);
                 };
 
                 // Some widgets trigger "change" on the input field
@@ -286,24 +291,20 @@
                 }
                 var getter = parse(attrs.kNgModel);
                 var setter = getter.assign;
-                var isEmpty = widget.value() == null || widget.value() == "";
-
-                // initial value
-                if (getter(scope) !== widget.value() && !isEmpty) {
-                  setter(scope, widget.value());
-                } else if (isEmpty) {
-                  widget.value(getter(scope));
-                  widget.trigger("change");
-                }
+                var updating = false;
+                widget.value(getter(scope));
 
                 // keep in sync
                 scope.$watch(attrs.kNgModel, function(newValue, oldValue){
+                  if (updating) return;
                   if (newValue === oldValue) return;
                   widget.value(newValue);
                 });
                 widget.bind("change", function(){
+                  updating = true;
                   setter(scope, widget.value());
                   digest(scope);
+                  updating = false;
                 });
               }
             }
@@ -524,7 +525,7 @@
   });
 
   // for the Grid and ListView we add `data` and `selected` too.
-  defadvice([ "ui.Grid", "ui.ListView" ], "$angular_makeEventHandler", function(event, scope, handler){
+  defadvice([ "ui.Grid", "ui.ListView", "ui.TreeView" ], "$angular_makeEventHandler", function(event, scope, handler){
     if (event != "change") return this.next();
     handler = parse(handler);
     return function(ev) {
@@ -559,7 +560,7 @@
       }
 
       if (!multiple) {
-        locals.data = items[0];
+        locals.dataItem = locals.data = items[0];
         locals.selected = elems[0];
       }
 
@@ -844,7 +845,7 @@
       var model = self._modelForContainer(cont);
       var uid = model.uid;
       var prevScope = angular.element(cont).scope();
-      if (prevScope !== scope) {
+      if (prevScope && prevScope !== scope) {
         destroyScope(prevScope, cont);
       }
     }
@@ -892,14 +893,18 @@
     this.next();
   });
 
-  defadvice("ui.Window", "content", function(){
+  defadvice("ui.Window", AFTER, function(){
     this.next();
     var self = this.self;
     var scope = angular.element(self.element).scope();
-    if (scope) {
-      compile(self.element)(scope);
+    if (!scope) return;
+    bindBefore(self, "refresh", function(){
+      var content = self.wrapper.children(".k-window-content");
+      var scrollContainer = content.children(".km-scroll-container");
+      content = scrollContainer[0] ? scrollContainer : content;
+      compile(content.children())(scope);
       digest(scope);
-    }
+    });
   });
 
   defadvice("mobile.ui.ListView", "destroy", function(){
@@ -909,6 +914,65 @@
     }
     this.next();
   });
+
+  defadvice("ui.Tooltip", "_appendContent", function(){
+    this.next();
+    var self = this.self;
+    var scope = angular.element(self.element).scope();
+    if (scope) {
+      compile(self.content)(scope);
+      digest(scope);
+    }
+  });
+
+  // scheduler
+  {
+    defadvice("ui.Scheduler", AFTER, function(){
+      this.next();
+      var self = this.self;
+      var scope = angular.element(self.element).scope();
+      if (scope) {
+        self.$eventsScope = scope.$new();
+        bindBefore(self, "edit", function(ev){
+          var editScope = self.$editScope = scope.$new();
+          editScope.dataItem = ev.model;
+          compile(ev.container)(editScope);
+        });
+        var destroy = function(ev){
+          var editScope = self.$editScope;
+          if (editScope !== scope) {
+            destroyScope(editScope, ev.container);
+            self.$editScope = null;
+          }
+        };
+        bindBefore(self, "cancel", destroy);
+        bindBefore(self, "save", destroy);
+        bindBefore(self, "remove", destroy);
+        bindBefore(self, "navigate", function(){
+          self.$eventsScope.$destroy();
+          self.$eventsScope = scope.$new();
+        });
+      }
+    });
+
+    defadvice("ui.Scheduler", "destroy", function(){
+      if (this.$eventsScope) {
+        this.$eventsScope.$destroy();
+      }
+      this.next();
+    });
+
+    defadvice([ "ui.MultiDayView", "ui.MonthView" ], "_createEventElement", function(event){
+      var element = this.next();
+      var self = this.self;
+      var scope = angular.element(self.element).scope();
+      var itemScope = scope.$new();
+      itemScope.dataItem = event;
+      compile(element)(itemScope);
+      digest(itemScope);
+      return element;
+    });
+  }
 
   {
     // mobile/ButtonGroup does not have a "value" method, but looks
