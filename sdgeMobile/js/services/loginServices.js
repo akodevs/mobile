@@ -50,7 +50,7 @@ canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope', '$lo
               User.all().filter("username", '=', userName).list(function(users) {
 					
                   if (users.length === 0) { 
-                       $scope.errors.push('User does not exist'); 
+                      // $scope.errors.push('User does not exist'); 
                       return;
                   }
                   var user = users[0];
@@ -72,7 +72,7 @@ canvassApp.factory('loginServices',  ['sugarCRMDataProvider', '$rootScope', '$lo
                   } else if (typeof user.password !== 'undefined') {
 
                   	if (user.password !== hashedMaybePassword) { 
-                         $scope.errors.push('User Password is incorrect'); 
+                        // $scope.errors.push('User Password is incorrect'); 
                  		return;
              		 } 
                       

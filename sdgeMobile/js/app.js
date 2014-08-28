@@ -39,7 +39,7 @@ var canvassApp = angular
       })
       .when('/settings', {
         templateUrl: 'partials/settings.tpl.html', 
-        controller: 'ListCtrl'
+        controller: 'SettingsCtrl'
       })
       .when('/grid/:id/:name', {
         templateUrl: 'partials/grid.tpl.html', 
@@ -60,6 +60,10 @@ var canvassApp = angular
       .when('/dashboard', {
         templateUrl: 'partials/dashboard.tpl.html', 
         controller: 'DashboardCtrl'
+      })
+      .when('/meetings', {
+        templateUrl: 'partials/calendar.tpl.html', 
+        controller: 'CalendarCtrl'
       })
       .otherwise({
         redirectTo: '/'

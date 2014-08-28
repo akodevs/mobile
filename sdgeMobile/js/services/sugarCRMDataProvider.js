@@ -87,8 +87,38 @@ canvassApp.factory('sugarCRMDataProvider', function() {
             });
         };
         
+    
+         var sendData = function(dataJson, callback) {
+            
+            execute(function() {
+                $.ajax({
+                    url: "https://csr.rhainc.com/crm_dev8/index.php?module=SugarToSp&action=SyncMobileCanvassingInbound",
+                    data: 'dataJson='+dataJson,
+                    type: "POST",
+                    dataType: "json",
+                    success: function() {
+                        
+                        try {
+                            callback();
+                        } catch(ex) {
+                            console.log(ex.message);
+                            navigator.notification.alert("Error saving sugar data into local database.");
+                        }
+                       
+                        //kendo.mobile.application.hideLoading();
+                    },
+                    error: function() {
+                        navigator.notification.alert("Error sending sugarcrm data.");
+                    	//kendo.mobile.application.hideLoading();
+                    }
+                });
+            });
+        };
+        
+    
         return {
             getData : getData,
+            sendData : sendData,
             isValidUser : isValidUser
         };
         

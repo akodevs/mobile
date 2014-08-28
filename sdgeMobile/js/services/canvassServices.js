@@ -141,6 +141,19 @@ canvassApp.factory( 'canvassServices', ['loginServices', function(loginServices)
                         });     
                },
            
+           	getMeetings: function(scope, sugarId, callback) {
+                   
+                       Meeting.all().filter("assigned_to_id", '=',  sugarId).selectJSON(['*'], function(items) {
+                     	   var dataSource = new kendo.data.SchedulerDataSource({    
+                                data: items, 
+                              });
+                              
+                            scope.meetings = dataSource; 
+                        	 
+							callback();
+                        });  
+                            
+               }
            
            	
            
