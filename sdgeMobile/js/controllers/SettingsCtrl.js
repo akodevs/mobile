@@ -5,6 +5,7 @@ angular.module('canvassApp')
       
     	$scope.syncData = function() {
            
+            var userIdentity = loginServices.getUserIdentity();        
             var btn = $("#syncButton");
                 btn.button('loading')
                 $.ajax()
@@ -13,9 +14,8 @@ angular.module('canvassApp')
                  		 btn.button('reset')
                       },3000);
                 }); 
-            
-            	var userIdentity = app.Login.getUserIdentity();
-            	app.SugarCRMSynchronizer.syncDb(userIdentity.sugarId, function(){});
+             
+            	//app.SugarCRMSynchronizer.syncDb(userIdentity.sugarId, function(){});
 
         }
       
